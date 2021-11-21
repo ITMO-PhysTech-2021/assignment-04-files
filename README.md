@@ -1,4 +1,4 @@
-# Задание #03. Всякое разное
+# Задание #04. Файлы
 
 ## Правила
 
@@ -40,7 +40,7 @@
 выполните следующую команду:
 
 ```shell
-git remote add upstream git@github.com:ITMO-PhysTech-2021/assignment-03-variety.git
+git remote add upstream git@github.com:ITMO-PhysTech-2021/assignment-04-files.git
 ```
 
 Теперь у вас есть два удаленных репозитория, с которыми вы можете работать:
