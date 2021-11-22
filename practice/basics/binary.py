@@ -5,4 +5,7 @@ def bin_sum_two(filename):
     """
     pass
 
-# TODO: больше заданий
+
+def find_person(filename, **kwargs):
+    """"""
+    pass
