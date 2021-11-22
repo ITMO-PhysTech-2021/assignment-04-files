@@ -6,6 +6,6 @@ def bin_sum_two(filename):
     pass
 
 
-def find_person(filename, **kwargs):
-    """"""
+def find_person(filename, identifier):
+    """Найти человека по id в базе указанной структуры (см. _legend.md)"""
     pass
