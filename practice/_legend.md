@@ -4,5 +4,4 @@
 - `basics`
 - `config`
 - `json`
-- `xml`
 
