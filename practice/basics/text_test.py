@@ -106,6 +106,7 @@ alphabet_data = [
 
 @pytest.mark.parametrize('data', alphabet_data)
 def test_alphabet(data):
+    # noinspection PyArgumentList
     try:
         if data[1]:
             with open(data[0], 'w') as file:
