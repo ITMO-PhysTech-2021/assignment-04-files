@@ -52,8 +52,8 @@ git remote add upstream git@github.com:ITMO-PhysTech-2021/assignment-04-files.gi
 
 ```shell
 git pull upstream
-git reset --hard upstream/main
-git push --force origin main
+git reset --hard upstream/master
+git push --force origin master
 ```
 
 ## Процесс выполнения заданий
@@ -63,7 +63,7 @@ git push --force origin main
 **Важно:** перед тестированием любого задания подгрузите изменения из общего репозитория:
 
 ```shell
-git pull upstream main
+git pull upstream master
 ```
 
 ### Практика
@@ -93,7 +93,7 @@ git push origin practice
 
 #### Pull Request
 
-После того, как все задания практики сделаны, создайте Pull Request из ветки `practice` в ветку `main` и укажите своего
+После того, как все задания практики сделаны, создайте Pull Request из ветки `practice` в ветку `master` и укажите своего
 преподавателя в качестве Reviewer. **Не надо делать Merge** до того, как ваш код будет проверен преподавателем.
 
 Pull Request можно сделать по ссылке, которая появляется, если вы делаете `git push origin practice`, либо в меню Pull
