@@ -84,7 +84,7 @@ save_color(color, 'output.json')
 ```
 
 Реализованная функция должна вернуть список всех страниц
-с количеством ссылок для каждой из них.
+с количеством ссылок на каждую из них.
 
 Пример результата для приведённого выше файла:
 ```python
@@ -94,7 +94,7 @@ save_color(color, 'output.json')
     ('google.com/search/2', 1),
     ('microsoft.com', 2),
     ('aliexpress.com', 1),
-    ('facebook.com', 1),
+    ('twitter.com', 0),
     ('facebook.com/post/1271', 1),
     ('facebook.com/post/3411', 1)
 ]

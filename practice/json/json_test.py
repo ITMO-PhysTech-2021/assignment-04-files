@@ -75,7 +75,7 @@ links_expected = [
     ('google.com/search/2', 1),
     ('microsoft.com', 2),
     ('aliexpress.com', 1),
-    ('facebook.com', 1),
+    ('twitter.com', 0),
     ('facebook.com/post/1271', 1),
     ('facebook.com/post/3411', 1)
 ]
