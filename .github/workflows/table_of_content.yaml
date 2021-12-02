@@ -3,7 +3,7 @@ name: 'Test table_of_content'
 on:
   push:
     paths:
-      - 'practice/basics/basics.py'
+      - 'practice/basics/table_of_content.py'
       - '.github/workflows/table_of_content.yaml'
   workflow_dispatch:
 
@@ -26,4 +26,4 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install pytest
       - run: |
-          pytest practice/basics/basics_test.py::test_table_of_content
+          pytest practice/basics/table_of_content_test.py

@@ -3,7 +3,7 @@ name: 'Test transfer_file'
 on:
   push:
     paths:
-      - 'practice/transfer/transfer.py'
+      - 'practice/transfer/transfer_file.py'
       - '.github/workflows/transfer_file.yaml'
   workflow_dispatch:
 
@@ -26,4 +26,4 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install pytest
       - run: |
-          pytest practice/transfer/transfer_test.py::test_transfer_file
+          pytest practice/transfer/transfer_file_test.py

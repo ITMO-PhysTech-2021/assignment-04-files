@@ -3,7 +3,7 @@ name: 'Test binary'
 on:
   push:
     paths:
-      - 'practice/basics/basics.py'
+      - 'practice/basics/binary.py'
       - '.github/workflows/binary.yaml'
   workflow_dispatch:
 
@@ -26,4 +26,4 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install pytest
       - run: |
-          pytest practice/basics/basics_test.py::test_binary
+          pytest practice/basics/binary_test.py

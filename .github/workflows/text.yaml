@@ -3,7 +3,7 @@ name: 'Test text'
 on:
   push:
     paths:
-      - 'practice/basics/basics.py'
+      - 'practice/basics/text.py'
       - '.github/workflows/text.yaml'
   workflow_dispatch:
 
@@ -26,4 +26,4 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install pytest
       - run: |
-          pytest practice/basics/basics_test.py::test_text
+          pytest practice/basics/text_test.py

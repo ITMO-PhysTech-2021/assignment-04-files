@@ -40,7 +40,6 @@ nonlocal_data = None
 def receive():
     global nonlocal_data
     nonlocal_data = run_receiver()
-    print(nonlocal_data)
 
 
 @mark.parametrize('obj', [
