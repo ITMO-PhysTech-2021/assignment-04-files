@@ -6,6 +6,5 @@
 - `json`
 
 Рекомендуемый порядок выполнения (сеть):
-- `transfer`
-- `requests`
-
+- `transfer_object`
+- `transfer_file`

@@ -3,6 +3,8 @@ import pathlib
 import multiprocessing
 import random
 import shutil
+import time
+from pytest import mark
 
 from transfer_file import run_receiver, run_sender
 
@@ -26,28 +28,37 @@ def gen_random(size):
     ('sandbox/data.txt', 'tmp1/tmp2/data', lambda: gen_random(0)),
     ('sandbox/data.txt', 'tmp1/tmp2/data', lambda: gen_random(1)),
     ('sandbox/data.txt', 'tmp1/tmp2/data', lambda: gen_random(256)),
-    ('sandbox/dir1/dir2/temp/file-babc6dfec6b8.unknown', 'tmpdest/a/b/c/d/e/f', lambda: gen_random(2 ** 17)),
+    ('sandbox/dir1/dir2/temp/file-русские-буквы.unknown', 'tmpdest/a/b/c/d/e/f', lambda: gen_random(2 ** 10)),
+    ('sandbox/dir1/dir2/temp/file-babc6dfec6b8.unknown', 'tmpdest/a/b/c/d/e/f', lambda: gen_random(2 ** 17 + 1)),
 ])
-def test_transfer(source_path: str, target_path: str, data_gen):
-    location = pathlib.Path('.').absolute()
-    while not location.name.startswith('assignment-04-files'):
-        location = location.parent
+def test_transfer_file(source_path: str, target_path: str, data_gen):
+    loc = pathlib.Path('.').absolute()
+    while not loc.name.startswith('assignment-04-files'):
+        os.chdir('..')
+        loc = loc.parent
 
     source = pathlib.Path(source_path).absolute()
-    tmpdir = pathlib.Path('.').absolute() / 'tmpdir'
+    tmpdir = pathlib.Path('tmpdir').absolute()
+    to_remove = [tmpdir]
     target = tmpdir / target_path
     os.makedirs(target, exist_ok=True)
     if data_gen is not None:
-        data = gen_data()
+        data = data_gen()
+        source_loc = source
+        while not source_loc.parent.exists():
+            source_loc = source_loc.parent
+        to_remove.append(source_loc)
+        os.makedirs(source.parent, exist_ok=True)
         with open(str(source), 'wb') as f:
             f.write(data)
     else:
         with open(str(source), 'rb') as f:
             data = f.read()
 
-    rec = threading.Thread(target=run_receiver, args=(str(target_path),))
-    snd = threading.Thread(target=run_sender, args=(str(source_path),))
+    rec = multiprocessing.Process(target=run_receiver, args=(f'tmpdir/{target_path}',))
+    snd = multiprocessing.Process(target=run_sender, args=(source_path,))
     rec.start()
+    time.sleep(1)
     snd.start()
     join_and_terminate(snd)
     join_and_terminate(rec)
@@ -59,9 +70,10 @@ def test_transfer(source_path: str, target_path: str, data_gen):
         with open(str(target_file), 'rb') as f:
             new_data = f.read()
 
-    if data_gen is not None:
-        os.remove(source_path)
-    target_file.resolve()
-    shutil.rmtree(tmpdir)
+    for loc in to_remove:
+        if loc.is_file():
+            os.remove(loc)
+        else:
+            shutil.rmtree(loc)
 
     assert data == new_data
