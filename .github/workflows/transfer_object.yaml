@@ -9,7 +9,7 @@ on:
 
 jobs:
   test-transfer-object:
-    timeout-minutes: 1
+    timeout-minutes: 3
     name: 'test-transfer-object'
     runs-on: [ self-hosted ]
     steps:
