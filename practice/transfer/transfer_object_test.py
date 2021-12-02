@@ -34,12 +34,8 @@ def gen_random(size):
     return a
 
 
-nonlocal_data = None
-
-
-def receive():
-    global nonlocal_data
-    nonlocal_data = run_receiver()
+def receive(target):
+    target['result'] = run_receiver()
 
 
 @mark.parametrize('obj', [
@@ -54,13 +50,13 @@ def receive():
 ])
 def test_transfer_object(obj):
     data = copy.deepcopy(obj)
-    global nonlocal_data
-    nonlocal_data = None
-    rec = multiprocessing.Process(target=receive, args=())
+    manager = multiprocessing.Manager()
+    res = manager.dict()
+    rec = multiprocessing.Process(target=receive, args=(res,))
     snd = multiprocessing.Process(target=run_sender, args=(obj,))
     rec.start()
     time.sleep(1)
     snd.start()
     join_and_terminate(snd)
     join_and_terminate(rec)
-    assert data == nonlocal_data
+    assert data == res['result']

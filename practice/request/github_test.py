@@ -7,4 +7,4 @@ def test_github():
     loc = pathlib.Path('.').absolute()
     while not loc.name.startswith('assignment-04-files'):
         loc = loc.parent
-    assert loc.name.split('-')[-1] == github()
+    assert loc.name.split('-', 3)[-1] == github()
