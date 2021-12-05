@@ -136,9 +136,9 @@ def compare_txt(filename1, filename2):
 
 def compare_json(filename1, filename2):
     with open(filename1, 'r') as file:
-        s1 = json.loads(file.read())
+        s1 = json.loads(file.read(), strict=False)
     with open(filename2, 'r') as file:
-        s2 = json.loads(file.read())
+        s2 = json.loads(file.read(), strict=False)
     return s1 == s2
 
 
