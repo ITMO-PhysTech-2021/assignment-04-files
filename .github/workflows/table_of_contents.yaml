@@ -1,16 +1,16 @@
-name: 'Test table_of_content'
+name: 'Test table_of_contents'
 
 on:
   push:
     paths:
-      - 'practice/basics/table_of_content.py'
-      - '.github/workflows/table_of_content.yaml'
+      - 'practice/basics/table_of_contents.py'
+      - '.github/workflows/table_of_contents.yaml'
   workflow_dispatch:
 
 jobs:
-  test-table-of-content:
+  test-table-of-contents:
     timeout-minutes: 1
-    name: 'test-table-of-content'
+    name: 'test-table-of-contents'
     runs-on: [ self-hosted ]
     steps:
       - name: Checkout
@@ -26,4 +26,4 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install pytest
       - run: |
-          pytest practice/basics/table_of_content_test.py
+          pytest practice/basics/table_of_contents_test.py

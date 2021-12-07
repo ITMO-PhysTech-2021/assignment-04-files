@@ -38,7 +38,7 @@ fdjson = [
                 "text": "not",
                 "color": "#AABBCC"
             },
-            { "text": "?\n" },
+            { "text": "?\\n" },
             {
                 "text": "THAT's",
                 "color": "#FFFFFF"
@@ -64,7 +64,7 @@ fdjson = [
     """
     {
         "spans": [
-            { "text": "Multiline\ntext\n" },
+            { "text": "Multiline\\ntext\\n" },
             {
                 "text": " with ",
                 "color": "#111122"
@@ -89,7 +89,7 @@ fdbin = [
     ]),
     ("Why not?\nTHAT's why!", [
         (4, 6, 'AABBCC'),
-        (9, 15, 'FFFFFF'),
+        (9, 14, 'FFFFFF'),
     ]),
     ("No formatting", []),
     ("a < 5 < 8", []),
@@ -118,6 +118,10 @@ def make_bin(filename, data):
             file.write(span[0].to_bytes(4, byteorder='big', signed=True))
             file.write(span[1].to_bytes(4, byteorder='big', signed=True))
             file.write(span[2].encode('ascii'))
+
+
+def file_count():
+    return sum([len(files) for r, d, files in os.walk(".")])
 
 
 def cleanup(filenames):
@@ -161,6 +165,7 @@ def compare_files(filename1, filename2):
 
 @pytest.mark.parametrize('data', test_data)
 def test_convert(data):
+    fc1 = file_count()
     try:
         make_text('in.fdtxt', data[0])
         make_text('in.fdjson', data[1])
@@ -181,3 +186,5 @@ def test_convert(data):
             'out.fdjson',
             'out.fdbin'
         ])
+    fc2 = file_count()
+    assert fc1 == fc2
