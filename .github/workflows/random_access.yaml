@@ -1,16 +1,16 @@
-name: 'Test text'
+name: 'Test random_access'
 
 on:
   push:
     paths:
       - 'practice/basics/text.py'
-      - '.github/workflows/text.yaml'
+      - '.github/workflows/random_access.yaml'
   workflow_dispatch:
 
 jobs:
-  test-text:
+  test-random-access:
     timeout-minutes: 1
-    name: 'test-text'
+    name: 'test-random-access'
     runs-on: [ self-hosted ]
     steps:
       - name: Checkout
@@ -26,4 +26,4 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install pytest
       - run: |
-          pytest practice/basics/text_test.py
+          pytest practice/basics/text_test.py::test_random_access

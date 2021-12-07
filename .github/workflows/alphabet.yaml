@@ -1,16 +1,16 @@
-name: 'Test binary'
+name: 'Test alphabet'
 
 on:
   push:
     paths:
-      - 'practice/basics/binary.py'
-      - '.github/workflows/binary.yaml'
+      - 'practice/basics/text.py'
+      - '.github/workflows/alphabet.yaml'
   workflow_dispatch:
 
 jobs:
-  test-binary:
+  test-alphabet:
     timeout-minutes: 1
-    name: 'test-binary'
+    name: 'test-alphabet'
     runs-on: [ self-hosted ]
     steps:
       - name: Checkout
@@ -26,4 +26,4 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install pytest
       - run: |
-          pytest practice/basics/binary_test.py
+          pytest practice/basics/text_test.py::test_alphabet

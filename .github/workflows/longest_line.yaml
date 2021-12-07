@@ -1,16 +1,16 @@
-name: 'Test transfer_file'
+name: 'Test longest_line'
 
 on:
   push:
     paths:
-      - 'practice/transfer/transfer_file.py'
-      - '.github/workflows/transfer_file.yaml'
+      - 'practice/basics/text.py'
+      - '.github/workflows/longest_line.yaml'
   workflow_dispatch:
 
 jobs:
-  test-transfer-file:
+  test-longest-line:
     timeout-minutes: 1
-    name: 'test-transfer-file'
+    name: 'test-longest-line'
     runs-on: [ self-hosted ]
     steps:
       - name: Checkout
@@ -26,4 +26,4 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install pytest
       - run: |
-          pytest practice/transfer/transfer_file_test.py
+          pytest practice/basics/text_test.py::test_longest_line

@@ -1,16 +1,16 @@
-name: 'Test transfer_file'
+name: 'Test bin_sum_two'
 
 on:
   push:
     paths:
-      - 'practice/transfer/transfer_file.py'
-      - '.github/workflows/transfer_file.yaml'
+      - 'practice/basics/binary.py'
+      - '.github/workflows/bin_sum_two.yaml'
   workflow_dispatch:
 
 jobs:
-  test-transfer-file:
+  test-bin-sum-two:
     timeout-minutes: 1
-    name: 'test-transfer-file'
+    name: 'test-bin-sum-two'
     runs-on: [ self-hosted ]
     steps:
       - name: Checkout
@@ -26,4 +26,4 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install pytest
       - run: |
-          pytest practice/transfer/transfer_file_test.py
+          pytest practice/basics/binary_test.py::test_bin_sum_two
