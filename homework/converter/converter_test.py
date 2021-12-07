@@ -89,7 +89,7 @@ fdbin = [
     ]),
     ("Why not?\nTHAT's why!", [
         (4, 6, 'AABBCC'),
-        (9, 15, 'FFFFFF'),
+        (9, 14, 'FFFFFF'),
     ]),
     ("No formatting", []),
     ("a < 5 < 8", []),
