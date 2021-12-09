@@ -24,6 +24,6 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          pip install pytest requests urllib3
+          pip install pytest requests urllib3 lxml
       - run: |
           pytest practice/request/wikipedia_test.py
